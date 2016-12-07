@@ -159,8 +159,19 @@ public class CollectionUtils {
                                             Function<T, K> keyFunction,
                                             Function<T, U> valueFunction,
                                             BinaryOperator<U> mergeFunction) {
+        Map<K,U> result = new HashMap<K,U>();
+        K key;
+        U value;
+        for(T element:  elements){
+            key = keyFunction.apply(element);
+            value = valueFunction.apply(element);
+            if(result.containsKey(key))
+                result.put(key, mergeFunction.apply(result.get(key),value));
+            else
+                result.put(key,value);
+        }
 
-        return null;
+        return result;
     }
 
 }
