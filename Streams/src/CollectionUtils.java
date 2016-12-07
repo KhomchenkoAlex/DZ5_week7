@@ -17,7 +17,7 @@ public class CollectionUtils {
     public static <E> List<E> filter(List<E> elements, Predicate<E> filter) {
         List<E> result = new ArrayList<>();
         for (E element : elements) {
-            if (filter.equals(element))
+            if (filter.test(element))
                 result.add(element);
         }
         return result;
@@ -26,7 +26,7 @@ public class CollectionUtils {
 
     public static <E> boolean anyMatch(List<E> elements, Predicate<E> predicate) {
         for (E element : elements) {
-            if (predicate.equals(element))
+            if (predicate.test(element))
                 return true;
         }
         return false;
@@ -35,7 +35,7 @@ public class CollectionUtils {
 
     public static <E> boolean allMatch(List<E> elements, Predicate<E> predicate) {
         for (E element : elements) {
-            if (!predicate.equals(element))
+            if (!predicate.test(element))
                 return false;
         }
         return true;
@@ -44,7 +44,7 @@ public class CollectionUtils {
 
     public static <E> boolean noneMatch(List<E> elements, Predicate<E> predicate) {
         for (E element : elements) {
-            if (predicate.equals(element))
+            if (predicate.test(element))
                 return false;
         }
         return true;
